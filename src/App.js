@@ -1,29 +1,25 @@
 import './App.css';
 import React, {useState} from 'react';
-import Header from './components/Header';
-import ProfileCard from './components/ProfileCard';
-import Footer from './components/Footer';
+import Swipes from './components/Swipe';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('home');
+  const [currentScreen, setCurrentScreen] = useState('swipes');
 
   const handleProfileButtonClick =() => {
     setCurrentScreen('profile')
   };
+  const handleSwipesButtonClick =() => {
+    setCurrentScreen('swipes')
+  };
+  const handleChatsButtonClick =() => {
+    setCurrentScreen('chats')
+  };
+
+return <Swipes currentScreen={currentScreen} />
 
 
 
 
-
-  return (
-    <div className="App">
-      <Header/>
-      <div className ="container">
-      <ProfileCard/>
-      <Footer/>
-    </div>
-    </div>
-  );
 }
 
 export default App;
