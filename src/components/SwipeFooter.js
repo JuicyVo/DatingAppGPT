@@ -1,7 +1,10 @@
-export default function Footer() {
+export default function Footer({setCurrentScreen}) {
+  const handleSwipesClick = () => {
+    setCurrentScreen('swipes');
+  };
   return (
       <header className="footer">
-      <button>Swipes</button>
+      <button onClick={handleSwipesClick}>Swipes</button> 
       <button>Chats</button>
       <button>Profile</button>
     </header>
