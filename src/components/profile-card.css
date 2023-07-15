@@ -1,8 +1,29 @@
 .profile-card {
+  
   background-color: red;
+  align-items: center;
+  max-width: 80%;
+  margin-left: 20%;
+  margin-right: 20%
  
 }
 .profile-card img {
   max-width: 350px;
   max-height: 350px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.swipe-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 50px;
+
 }
