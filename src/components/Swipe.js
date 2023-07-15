@@ -11,10 +11,7 @@ function Swipes({ currentScreen }) {
         </div>
       </div>
     );
-  } else if (currentScreen === 'profile') {
-    return null;
-  } else {
-    return null;
+  
   }
 }
 
