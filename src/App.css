@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.img-profile {
+  width: 200px; /* Set your desired width */
+  height: 200px; /* Set your desired height */
+}
