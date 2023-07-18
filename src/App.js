@@ -11,7 +11,8 @@ import LogoutButton from './components/LogoutButton';
 
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('home');
+  const [currentScreen, setCurrentScreen] = useState('profile');
+
 
   const handleProfileButtonClick = () => {
     setCurrentScreen('profile');
@@ -36,8 +37,7 @@ function App() {
       <div className="container">
         <Swipe currentScreen={currentScreen} />
         <Chat currentScreen={currentScreen} />
-        <Profile currentScreen={currentScreen} setCurrentScreen={setCurrentScreen} />
-      
+        <Profile currentScreen={currentScreen} setCurrentScreen={setCurrentScreen}/>
       </div>
       <SwipeFooter setCurrentScreen={setCurrentScreen} />
       <LoginButton/>
