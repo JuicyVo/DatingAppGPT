@@ -9,6 +9,22 @@ import Profile from './components/Profile';
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 
+// const { PrismaClient } = require('@prisma/client');
+
+// const prisma = new PrismaClient();
+
+// async function testPrismaConnection() {
+//   try {
+//     await prisma.$connect();
+//     console.log('Prisma connected to the database.');
+//   } catch (error) {
+//     console.error('Error connecting to the database:', error);
+//   } finally {
+//     await prisma.$disconnect();
+//   }
+// }
+
+// testPrismaConnection();
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('profile');

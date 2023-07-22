@@ -11,9 +11,12 @@ function Profile({ currentScreen, setCurrentScreen }) {
     setEditMode(true);
   };
 
+
+  
+
   const handleSaveClick = () => {
-    // Add save logic here
-    setEditMode(false);
+    // Add save logic here after i finish making a db or api
+    setEditMode(false); 
   };
 
   return (

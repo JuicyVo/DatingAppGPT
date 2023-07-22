@@ -4,13 +4,24 @@
   align-items: center;
   max-width: 80%;
   margin-left: 20%;
-  margin-right: 20%
-  
+  margin-right: 20%;
+  display: flex;
+  flex-direction: column;  
  
 }
 .profile-card img {
   max-width: 350px;
   max-height: 350px;
+  object-fit: cover;
+
+  clip-path: inset(0 75px 0 75px);
+}
+.image-container {
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center; 
+  background-color: black;
 }
 
 .profile-info {
@@ -30,3 +41,4 @@
 
 
 }
+

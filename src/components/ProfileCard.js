@@ -4,7 +4,9 @@ import './profile-card.css'
 export default function ProfileCard() {
   return (
     <div className="profile-card">
-      <img src="/images/mario.jpg" alt="placeholderProfile"/>
+      <div class="image-container">
+      <img src="/images/Tengen.jpg" alt="placeholderProfile"/>
+      </div>
       <div className="profile-info">
         <h2>Name</h2>
         <p>Age: 25</p>
