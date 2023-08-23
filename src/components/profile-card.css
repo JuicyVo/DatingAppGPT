@@ -14,7 +14,7 @@
   max-height: 350px;
   object-fit: cover;
 
-  clip-path: inset(0 75px 0 75px);
+  /* clip-path: inset(0 75px 0 75px); */
 }
 .image-container {
   height: auto;

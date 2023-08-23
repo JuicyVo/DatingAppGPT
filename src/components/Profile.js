@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 function Profile({ currentScreen, setCurrentScreen }) {
   const { user } = useAuth0();
@@ -11,13 +12,13 @@ function Profile({ currentScreen, setCurrentScreen }) {
     setEditMode(true);
   };
 
-
-  
-
   const handleSaveClick = () => {
     // Add save logic here after i finish making a db or api
     setEditMode(false); 
   };
+
+
+  
 
   return (
     <>

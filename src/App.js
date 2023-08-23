@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import SwipeFooter from './components/SwipeFooter';
 import ProfileCard from './components/ProfileCard';
@@ -9,41 +10,52 @@ import Profile from './components/Profile';
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 
-// const { PrismaClient } = require('@prisma/client');
 
-// const prisma = new PrismaClient();
 
-// async function testPrismaConnection() {
-//   try {
-//     await prisma.$connect();
-//     console.log('Prisma connected to the database.');
-//   } catch (error) {
-//     console.error('Error connecting to the database:', error);
-//   } finally {
-//     await prisma.$disconnect();
-//   }
-// }
-
-// testPrismaConnection();
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('profile');
+  const [message, setMessage] = useState('');
 
 
   const handleProfileButtonClick = () => {
     setCurrentScreen('profile');
   };
-
   const handleSwipesButtonClick = () => {
     setCurrentScreen('swipes');
   };
-
   const handleChatsButtonClick = () => {
     setCurrentScreen('chat');
   };
 
+  useEffect(() => { //testrun
+   axios.get('http://localhost:8000/data')
+      .then(response => {
+        console.log("hi")
+        setMessage(response.data.message);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect (()=> {
+    axios.get('http://localhost:8000/users')
+    .then(response => {
+      console.log (response.data)
+    })
+    .catch (error => {
+      console.log (error)
+    })
+  },[])
+
+
+
+
+
   return (
     <div className="App">
+       <h1>{message}</h1>
       <SwipeHeader
         // currentScreen={currentScreen}
         // handleProfileButtonClick={handleProfileButtonClick}
@@ -59,6 +71,7 @@ function App() {
       <LoginButton/>
       <LogoutButton/>
     </div>
+   
   );
 }
 
