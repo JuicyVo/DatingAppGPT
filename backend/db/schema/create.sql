@@ -12,9 +12,10 @@ CREATE TABLE UserProfile (
     age INTEGER,
     gender TEXT,
     biography TEXT,
+    isBot BOOLEAN DEFAULT false 
     matches INTEGER,
     reports INTEGER,
-    email VARCHAR(255) UNIQUE,
+    email VARCHAR(255),
     profilePictureUrl VARCHAR(255),
     location VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
