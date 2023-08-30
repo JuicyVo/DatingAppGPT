@@ -17,6 +17,8 @@ function Profile({ currentScreen, setCurrentScreen }) {
     setEditMode(false); 
   };
 
+  // console.log(user)
+
 
   
 

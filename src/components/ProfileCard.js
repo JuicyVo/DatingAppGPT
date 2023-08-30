@@ -19,35 +19,7 @@ export default function ProfileCard() {
       });
   }, [])
 
-  useEffect(() => {
-    if (isAuthenticated && users.length > 0) {
-      const fullName = `${user?.given_name} ${user?.family_name}`;
-      const userExists = users.some(u => `${u.firstName} ${u.lastName}` === fullName);
-
-      if (!userExists) {
-        axios
-          .post('http://localhost:8000/users', {
-            firstName: user?.given_name,
-            lastName: user?.family_name,
-            age: 0,
-            gender: '',
-            biography: '',
-            matches: 0,
-            reports: 0,
-            email: user?.email || `${user?.given_name}.${user?.family_name}@example.com`,
-            profilePictureUrl: user?.picture,
-            location: '',
-          })
-          .then(response => {
-            console.log('User added:', response.data);
-            setUsers(prevUsers => [...prevUsers, response.data]);
-          })
-          .catch(error => {
-            console.log('Error adding user:', error);
-          });
-      }
-    }
-  }, [user, isAuthenticated, users]);
+ 
 
   const handleNextProfile = () => {
     if (currentIndex < users.length - 1) {
@@ -72,7 +44,7 @@ export default function ProfileCard() {
         <img src={currentProfile.profilepictureurl} alt="Profile" />
       </div>
       <div className="profile-info">
-       <h2>{`${currentProfile.firstname} ${currentProfile.lastname}`}</h2>
+        <h2>{`${currentProfile.firstname} ${currentProfile.lastname}`}</h2>
         <p>{currentProfile.biography}</p>
       </div>
       <div className="swipe-buttons">
