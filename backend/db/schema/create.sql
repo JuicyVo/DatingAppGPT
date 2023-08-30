@@ -1,3 +1,4 @@
+-- Drop existing tables if they exist
 DROP TABLE IF EXISTS Likes;
 DROP TABLE IF EXISTS Message;
 DROP TABLE IF EXISTS Matches;
@@ -12,7 +13,7 @@ CREATE TABLE UserProfile (
     age INTEGER,
     gender TEXT,
     biography TEXT,
-    isBot BOOLEAN DEFAULT false 
+    isBot BOOLEAN DEFAULT false,
     matches INTEGER,
     reports INTEGER,
     email VARCHAR(255),
