@@ -76,7 +76,10 @@ function Chat({ currentScreen }) {
                   {userProfiles[index] && (
                     <div>
                       <p>{userProfiles[index].firstname} {userProfiles[index].lastname}</p>
-                      <img src={userProfiles[index].profilepictureurl} alt={`Profile ${index}`} />
+                      <img 
+                      src={userProfiles[index].profilepictureurl} 
+                      alt={`Profile ${index}`} 
+                      className="profile-image" />
                     </div>
                   )}
                 </div>
