@@ -81,6 +81,65 @@ app.post('/users', (req, res) => {
   }
 });
 
+app.post('/get-user-id', (req, res) => { //god damn this was a pain
+  try {
+    const { email } = req.body;
+    const values = [email];
+    console.log('Received email:', email); 
+    const query = 'SELECT userId FROM UserProfile WHERE email = $1;';
+
+    client.query(query, values, (error, result) => {
+      if (error) {
+        console.log('Database query error:', error);
+        res.status(500).json({ error: 'An error occurred while getting userId' });
+      } else {
+        console.log('Database query result:', result.rows); // Log the entire result object
+        const userId = result.rows[0] ? result.rows[0].userid : null;
+        console.log("User ID:", userId); 
+
+        console.log("Response Sent:", {
+          userId,
+        });
+        res.json({ userId });
+      }
+    });
+  } catch (error) {
+    console.log('Server error:', error);
+    res.status(500).json({ error: 'An error occurred while getting userId' });
+  }
+});
+
+
+app.post('/create-match', (req, res) => {
+  try {
+    const { user1Id, user2Id } = req.body;
+
+    const query = 'INSERT INTO Matches (user1Id, user2Id) VALUES ($1, $2) RETURNING *;';
+    const values = [user1Id, user2Id];
+    
+    client.query(query, values, (error, result) => {
+      if (error) {
+        console.error('Error creating a match:', error);
+        res.status(500).json({ error: 'An error occurred while creating a match' });
+      } else {
+        const match = result.rows[0];
+        console.log('Match created:', match);
+        res.json({ match });
+      }
+    });
+  } catch (error) {
+    console.error('Error creating a match:', error);
+    res.status(500).json({ error: 'An error occurred while creating a match' });
+  }
+});
+
+
+
+
+
+
+
+
 
 
 
