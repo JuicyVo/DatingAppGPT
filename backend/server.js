@@ -218,7 +218,52 @@ app.post('/create-match', (req, res) => {
 
 
 
+app.get('/user-matches/:userId', (req, res) => {
+  try {
+    const userId = req.params.userId;
+    
+    const query = 'SELECT * FROM Matches WHERE user1Id = $1 OR user2Id = $1';
+    const values = [userId];
 
+    client.query(query, values, (error, result) => {
+      if (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching user matches.' });
+      } else {
+        res.json(result.rows);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching user matches.' });
+  }
+});
+
+
+
+app.get('/user-profile/:userId', (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const query = 'SELECT * FROM UserProfile WHERE userId = $1;';
+    const values = [userId];
+
+    client.query(query, values, (error, result) => {
+      if (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching user profile.' });
+      } else {
+        if (result.rows.length === 0) {
+          res.status(404).json({ error: 'User profile not found.' });
+        } else {
+          res.json(result.rows[0]);
+        }
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching user profile.' });
+  }
+});
 
 
 
