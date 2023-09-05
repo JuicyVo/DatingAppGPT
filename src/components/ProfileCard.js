@@ -35,35 +35,44 @@ export default function ProfileCard() {
     }
   };
 
- const handleLike = (constructedEmail, likedUserId) => {
-  axios
-    .post('http://localhost:8000/get-user-id', {
-      email: constructedEmail,
-    })
-    .then(response => {
-      const user1Id = response.data.userId;
-      const user2Id= likedUserId
-      console.log(`User with ID ${user1Id} likes user with ID ${likedUserId}`);
-      
-      axios
-        .post('http://localhost:8000/create-match', {
-          user1Id,
-          user2Id,
-        })
-        .then (matchResponse => {
-          const match = matchResponse.data.match;
-          console.log ('Match created', match)
-        })
-        .catch(error =>{
-          console.log ('Error creating a match', error)
-        })
-
-
-    })
-    .catch(error => {
-      console.log('Error getting userId:', error);
-    });
-};
+  const handleLike = (constructedEmail, likedUserId) => {
+    axios
+      .post('http://localhost:8000/get-user-id', {
+        email: constructedEmail,
+      })
+      .then(response => {
+        const user1Id = response.data.userId;
+        const user2Id = likedUserId;
+  
+        console.log(`User with ID ${user1Id} likes user with ID ${likedUserId}`);
+  
+        axios.post('http://localhost:8000/create-like', {
+            likerId: user1Id,
+            likedUserId: user2Id,
+          })
+          .then(likeResponse => {
+            console.log('Like Response:', likeResponse.data);
+  
+            axios.post('http://localhost:8000/create-match', {
+                user1Id,
+                user2Id,
+              })
+              .then(matchResponse => {
+                console.log('Match Response:', matchResponse.data); // Log match response
+              })
+              .catch(error => {
+                console.log('Error creating a match:', error);
+              });
+          })
+          .catch(error => {
+            console.log('Error creating a like:', error);
+          });
+      })
+      .catch(error => {
+        console.log('Error getting userId:', error);
+      });
+  };
+  
 
   if (users.length === 0) {
     return <div>Loading...</div>;
