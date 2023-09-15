@@ -1,8 +1,9 @@
-
+/* chat.css */
 .chatContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  padding: 20px;
 }
 
 .newMatches {
@@ -10,40 +11,54 @@
   padding: 0;
   margin: 0;
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 .newMatches li {
-  margin-left: 40px;
-  
+  flex: 0 0 calc(33.33% - 20px); /* Adjust as needed for the number of columns */
+  max-width: calc(33.33% - 20px); /* Adjust as needed for the number of columns */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .messageLog {
   display: flex;
   list-style-type: none;
-  margin-top: 0px;
-  justify-content: flex-start;
+  margin-top: 20px;
   flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
 }
 
 .messageLog li {
-  margin-bottom: 10px;
+  align-self: flex-start;
+  background-color: #e1e1e1;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 70%;
+  word-wrap: break-word;
 }
 
-
-.newMatchesHeader{
+.newMatchesHeader {
   display: flex;
-  /* background-color: red; */
-  align-items: flex-start;
-  margin-left: 40px;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.messageLogHeader{
+
+.messageLogHeader {
   display: flex;
-  align-items: flex-start;
-  margin-left: 40px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .profile-image {
-  width: 400px; 
+  width: 200px;
   height: 200px;
-  object-fit: cover; 
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden; /* Add this property */
 }
+/* Add more styles as needed */

@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import './chat.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Message from './Message';
+import { useParams } from 'react-router-dom';
+
 import { useAuth0 } from '@auth0/auth0-react';
 
-function Chat({ currentScreen }) {
+function Chat ({currentScreen, setCurrentScreen}){
+ 
   const [matches, setMatches] = useState([]);
   const [userProfiles, setUserProfiles] = useState([]); // State to store user profiles
   const { user, isAuthenticated } = useAuth0();
+  
+  const [userId2, setUserId2] = useState(null);
   const [userId, setUserId] = useState(null); // State to store user's ID
+  const navigate = useNavigate();
+
+
+  const handleImageClick = (userId1, userId2) => {
+    console.log (userId1)
+    setUserId2(userId2)
+    setCurrentScreen('message');
+  };
+
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -46,8 +62,6 @@ function Chat({ currentScreen }) {
             // Add user profile information to the array
             userProfilesData.push(userProfileResponse.data);
           }
-
-          // Set both matches and user profiles data in state
           setMatches(matchesData);
           setUserProfiles(userProfilesData);
 
@@ -79,7 +93,10 @@ function Chat({ currentScreen }) {
                       <img 
                       src={userProfiles[index].profilepictureurl} 
                       alt={`Profile ${index}`} 
-                      className="profile-image" />
+                      className="profile-image" 
+                      onClick={() => handleImageClick(userId, match.user2id)}
+                      />
+
                     </div>
                   )}
                 </div>
@@ -92,7 +109,9 @@ function Chat({ currentScreen }) {
         </div>
       </div>
     );
-  }
+  } else if (currentScreen === 'message') {
+  console.log ("message")
+  return <Message userId1={userId} userId2={userId2}  />;
 }
-
+}
 export default Chat;

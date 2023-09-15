@@ -3,13 +3,17 @@ import axios from 'axios';
 import './App.css';
 import SwipeFooter from './components/SwipeFooter';
 import { useAuth0 } from "@auth0/auth0-react";
+import Chatroom from './components/Chatroom';
 import ProfileCard from './components/ProfileCard';
 import SwipeHeader from './components/SwipeHeader';
 import Swipe from './components/Swipe';
 import Chat from './components/Chat';
 import Profile from './components/Profile';
+import Message from './components/Message';
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 
 
@@ -86,8 +90,8 @@ function App() {
 
 
 
-
   return (
+    <Router>
     <div className="App">
        <h1>{message}</h1>
       <SwipeHeader
@@ -98,14 +102,15 @@ function App() {
       />
       <div className="container">
         <Swipe currentScreen={currentScreen} />
-        <Chat currentScreen={currentScreen} />
+        <Chat currentScreen={currentScreen} setCurrentScreen={setCurrentScreen} />
         <Profile currentScreen={currentScreen} setCurrentScreen={setCurrentScreen}/>
       </div>
       <SwipeFooter setCurrentScreen={setCurrentScreen} />
       <LoginButton/>
+      
       <LogoutButton/>
     </div>
-   
+    </Router>
   );
 }
 

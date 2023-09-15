@@ -1,0 +1,12 @@
+.message-list {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  background-color: lightblue;
+  height: 400px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 10px; /* Add rounded corners */
+  padding: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
