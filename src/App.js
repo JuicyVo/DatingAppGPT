@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import OpenAI from 'openai';
 import SwipeFooter from './components/SwipeFooter';
 import { useAuth0 } from "@auth0/auth0-react";
 import Chatroom from './components/Chatroom';
@@ -23,7 +24,10 @@ function App() {
   const [users, setUsers] = useState([]); // Add this line
   const [currentScreen, setCurrentScreen] = useState('profile');
   const [message, setMessage] = useState('');
+  const openai = require('openai');
 
+  // const openAiApiKey = process.env.REACT_APP_OPEN_AI_API_KEY;
+  // console.log('OpenAI API Key:', openAiApiKey);
 
 
   const handleProfileButtonClick = () => {
@@ -56,6 +60,8 @@ function App() {
       console.log (error)
     })
   },[])
+
+
 
 
   // useEffect(() => {

@@ -1,6 +1,10 @@
 const express = require('express');
 const { Client } = require('pg');
 const cors = require('cors');
+const openai = require('openai');
+require('dotenv').config(); //to grab fron .env in backend
+
+
 
 const app = express();
 const port = 8000;
@@ -10,6 +14,18 @@ const client = new Client({
   database: 'gptinder',
   user: 'williamvo',
 });
+
+const openaiApiKey = process.env.OPENAI_API_KEY; 
+console.log('OpenAI API Key:', openaiApiKey);
+
+const openaiClient = new openai({
+  apiKey: openaiApiKey
+});
+
+
+
+
+
 
 client.connect();
 app.use(cors());
@@ -268,13 +284,11 @@ app.get('/user-profile/:userId', (req, res) => {
 
 
 
+//OPENAI stuff
 
 
-
-
-
-
-
+// Start the Express app
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
