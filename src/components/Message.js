@@ -30,7 +30,13 @@ function Message({ userId1, userId2 }) {
   return (
     <div className="message-container">
       {showChatroom ? ( // Conditionally render Chatroom
-        <Chatroom userId1={userId1} userId2={userId2} />
+        <Chatroom
+        userId1={userId1}
+        userId2={userId2}
+        userName={userName} // Pass user name as prop
+        userProfilePicture={userProfilePicture} // Pass profile picture as prop
+      
+         />
       ) : (
         // Message content
         <div>
@@ -59,5 +65,7 @@ function Message({ userId1, userId2 }) {
     </div>
   );
 }
+
+
 
 export default Message;
