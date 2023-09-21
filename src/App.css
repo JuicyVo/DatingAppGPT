@@ -41,3 +41,9 @@
   width: 200px; /* Set your desired width */
   height: 200px; /* Set your desired height */
 }
+
+.user-profile-icon {
+  width: 24px; /* Set the desired width */
+  height: 24px; /* Set the desired height */
+  margin-right: 0.5em; /* Optional: Add some spacing between picture and text */
+}

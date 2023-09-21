@@ -25,8 +25,6 @@ const openaiClient = new openai({
 
 
 
-
-
 client.connect();
 app.use(cors());
 app.use(express.json());
@@ -284,7 +282,6 @@ app.get('/user-profile/:userId', (req, res) => {
 
 
 
-//OPENAI stuff
 
 
 // Start the Express app

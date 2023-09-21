@@ -1,64 +1,91 @@
 /* chat.css */
-.chatContainer {
+.message-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f0f0f0;
   padding: 20px;
-}
-
-.newMatches {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: flex-start;
-}
-
-.newMatches li {
-  flex: 0 0 calc(33.33% - 20px); /* Adjust as needed for the number of columns */
-  max-width: calc(33.33% - 20px); /* Adjust as needed for the number of columns */
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.messageLog {
-  display: flex;
-  list-style-type: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: 0 auto;
   margin-top: 20px;
+}
+
+.message-container img.user-profile-icon {
+  width: 24px; /* Set the same width as .user-profile-icon */
+  height: 24px; /* Set the same height as .user-profile-icon */
+  margin-right: 0.5em; /* Optional: Add some spacing between picture and text */
+}
+
+.message-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.message-container img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.message-container .messageLog {
+  display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
+  margin-top: 20px;
 }
 
-.messageLog li {
+.message-container .messageLog li {
   align-self: flex-start;
   background-color: #e1e1e1;
   padding: 10px 15px;
   border-radius: 15px;
   max-width: 70%;
   word-wrap: break-word;
+  margin-bottom: 10px;
 }
 
-.newMatchesHeader {
+.message-container .message-input {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.messageLogHeader {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+.message-container .message-input input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.profile-image {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
+.message-container .message-input button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  overflow: hidden; /* Add this property */
 }
-/* Add more styles as needed */
+
+.message-container .message-input button:hover {
+  background-color: #0056b3;
+}
+
+
+
+@keyframes wordByWord {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
