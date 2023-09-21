@@ -112,9 +112,11 @@ function App() {
         <Profile currentScreen={currentScreen} setCurrentScreen={setCurrentScreen}/>
       </div>
       <SwipeFooter setCurrentScreen={setCurrentScreen} />
+      <div className="loginlogout">
       <LoginButton/>
       
       <LogoutButton/>
+      </div>
     </div>
     </Router>
   );

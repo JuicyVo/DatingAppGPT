@@ -1,14 +1,52 @@
+/* Add this CSS to your Message component */
 .message-list {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  background-color: lightblue;
-  height: 400px;
-  width: 70%;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7F7FF; /* Use the same background color as in Chatroom */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%; /* Use the same width as in Chatroom */
   margin: 0 auto;
-  border-radius: 10px; /* Add rounded corners */
-  padding: 20px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  margin-top: 20px;
+}
+
+/* Apply the same styling to images as in Chatroom */
+.message-list img.user-profile-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 10px;
+  margin-right: 0.5em;
+}
+
+.message-list-container .message-list img {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+ border-color:aquamarine;
+ border:20px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.message-list-container {
+  width: 80%;
 }
 
 
+.message-container .message-list {
+  /* Your desired styles here */
+  display: flex;
+;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  height: 400px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

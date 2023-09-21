@@ -76,42 +76,35 @@ function Chat ({currentScreen, setCurrentScreen}){
 
   if (currentScreen === 'chats') {
     return (
-      <div className="App">
-        <div className="chatContainer">
-          <div className="newMatchesHeader">
-            <h2>Messages</h2>
-          </div>
-          <ul className="messageLog">
-            {matches.map((match, index) => (
-              <li key={match.matchid}>
-                <div>
-                  {/* <p>Match ID: {match.matchid}</p> */}
-                  {/* <p>User 2 ID: {match.user2id}</p> */}
-                  {userProfiles[index] && (
-                    <div>
-                      <p>{userProfiles[index].firstname} {userProfiles[index].lastname}</p>
-                      <img 
-                      src={userProfiles[index].profilepictureurl} 
-                      alt={`Profile ${index}`} 
-                      className="profile-image" 
-                      onClick={() => handleImageClick(userId, match.user2id)}
-                      />
-
-                    </div>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-          <div className="messageLogHeader">
-            
-          </div>
+      <div className="chat-container">
+        <div className="new-matches-header">
+          <h2>Messages</h2>
         </div>
+        <ul className="message-log">
+          {matches.map((match, index) => (
+            <li key={match.matchid}>
+              <div>
+                {userProfiles[index] && (
+                  <div>
+                    <p>{userProfiles[index].firstname} {userProfiles[index].lastname}</p>
+                    <img 
+                    src={userProfiles[index].profilepictureurl} 
+                    alt={`Profile ${index}`} 
+                    className="profile-image" 
+                    onClick={() => handleImageClick(userId, match.user2id)}
+                    />
+                  </div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="message-log-header"></div>
       </div>
     );
   } else if (currentScreen === 'message') {
-  console.log ("message")
-  return <Message userId1={userId} userId2={userId2}  />;
-}
+    console.log("message")
+    return <Message userId1={userId} userId2={userId2} />;
+  }
 }
 export default Chat;

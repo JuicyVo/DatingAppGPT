@@ -1,3 +1,7 @@
+.profile-container {
+  background-color:#F7F7FF
+}
+
 .profile-card {
   display: flex;
   flex-direction: column;
