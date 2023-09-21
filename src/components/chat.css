@@ -1,20 +1,33 @@
 /* chat.css */
+
+.chatroom {
+  background-color: #F2D0A4;
+  width: 100%;
+}
+
 .message-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: #F7F7FF;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 300px;
+  width: 90%;
   margin: 0 auto;
   margin-top: 20px;
+}
+
+.message-container .message-log {
+  background-color: #F2D0A4; /* Set background color for the message log */
+  border-radius: 10px; /* You can adjust the border-radius for the message log separately */
+  padding: 20px; /* Adjust padding for the message log */
 }
 
 .message-container img.user-profile-icon {
   width: 24px; /* Set the same width as .user-profile-icon */
   height: 24px; /* Set the same height as .user-profile-icon */
+  margin-top: 10px;
   margin-right: 0.5em; /* Optional: Add some spacing between picture and text */
 }
 
@@ -29,15 +42,11 @@
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 10px;
+  margin-top:30px;
 }
 
-.message-container .messageLog {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: flex-start;
-  margin-top: 20px;
-}
+
+
 
 .message-container .messageLog li {
   align-self: flex-start;
@@ -57,7 +66,7 @@
 }
 
 .message-container .message-input input[type="text"] {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;

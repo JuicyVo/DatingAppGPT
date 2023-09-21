@@ -68,7 +68,7 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
       return {
         role: role,
         content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt
-        which will be this "${userMessage}", and maybe try to respond in a sexy way while trying to flirt with the user. Try to keep it relatively short`,
+        which will be this "${userMessage}", and maybe try to respond in a sexy way while trying to flirt with the user. Try to keep it relatively short, to less than 200 tokens`,
       };
     }
 
@@ -107,14 +107,13 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
   };
 
   return (
-    <div>
+    <div className='chatroom'>
       <div className="user-info">
         <img src={userProfilePicture} alt="User Profile" className="user-profile-picture" />
         <h2>{userName}</h2>
       </div>
 
       <div className="message-container">
-        <h2>TEST</h2>
         {[...messages, ...sentMessages].map((message, index) => (
           <div key={index} className={`message ${message.sender === 'chatGPT' ? 'sent' : 'received'}`}>
             {message.picture && (
