@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/DatingAppGPT/static/css/main.8f9497bd.css",
+    "main.js": "/DatingAppGPT/static/js/main.485c8e53.js",
+    "index.html": "/DatingAppGPT/index.html",
+    "main.8f9497bd.css.map": "/DatingAppGPT/static/css/main.8f9497bd.css.map",
+    "main.485c8e53.js.map": "/DatingAppGPT/static/js/main.485c8e53.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f9497bd.css",
+    "static/js/main.485c8e53.js"
+  ]
+}
