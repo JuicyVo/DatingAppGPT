@@ -7,15 +7,13 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
   const [newMessage, setNewMessage] = useState('');
   const [socket, setSocket] = useState(null);
   const [sentMessages, setSentMessages] = useState([]);
-  const [prompt, setPrompt] = useState('');
-  const [response, setResponse] = useState('');
-  const userMessage = newMessage.trim();
+  const [userMessage, setUserMessage] = useState('');
 
   const HTTP = "http://localhost:3000/GPT"
 
   useEffect(() => {
     // Establish WebSocket connection when the component mounts
-    const webSocketUrl = 'ws://localhost:8001'; 
+    const webSocketUrl = 'ws://localhost:8001';
     const ws = new WebSocket(webSocketUrl);
 
     ws.onopen = () => {
@@ -51,31 +49,21 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
       socket.send(JSON.stringify(message));
       setNewMessage('');
 
-      // Add the user's message to the messages state with their profile picture
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'chatGPT', text: newMessage, picture: 'ai_profile_picture_url' },
-      ]);
-
-      // Process the user's message with OpenAI
+      setUserMessage(newMessage); // Set the user's message for ChatGPT
       await handleSubmit();
     }
   };
 
   const handleSubmit = async () => {
-    async function processMessageToChatGpt() {
-      let role = "user";
-      return {
-        role: role,
-        content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt
-        which will be this "${userMessage}", and maybe try to respond in a sexy way while trying to flirt with the user. Try to keep it relatively short, to less than 200 tokens`,
-      };
-    }
-
     const openAiApiKey = process.env.REACT_APP_OPEN_AI_API_KEY;
-    const message = await processMessageToChatGpt();
+    // Construct the message to send to ChatGPT, including the prompt and user's message
+    const messageToChatGpt = [
+      { role: 'user', content: userMessage },
+      { role: 'assistant', content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt which will be this "${userMessage}", and maybe try to respond in a sexy way while trying to flirt with the user. Try to keep it relatively short, to less than 200 tokens` },
+    ];
+
     const apiRequestBody = {
-      messages: [message],
+      messages: messageToChatGpt,
       model: "gpt-3.5-turbo",
       temperature: 0.7,
     };
@@ -93,7 +81,7 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
       if (response.ok) {
         const data = await response.json();
 
-        // Add the ChatGPT response to the messages state with the AI profile picture
+        // Add the ChatGPT response to the messages state
         setMessages((prevMessages) => [
           ...prevMessages,
           { sender: userId1, text: `${userName}: ${data.choices[0].message.content}`, picture: userProfilePicture },
