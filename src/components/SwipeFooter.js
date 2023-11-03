@@ -12,22 +12,26 @@ export default function Footer({ currentScreen, setCurrentScreen }) {
   };
 
   const handleEditClick = () => {
-   setCurrentScreen ('edit')
+    setCurrentScreen('edit');
   };
+
+  const buttonStyle = { marginTop: '20px' };
 
   return (
     <header className="footer">
-      <button onClick={handleSwipesClick}>Swipes</button>
-      <button onClick={handleChatsClick}>Chats</button>
-      {currentScreen === 'profile' && (
-        <div>
+      <div style={buttonStyle}>
+        <button onClick={handleSwipesClick}>Swipes</button>
+        <button onClick={handleChatsClick}>Chats</button>
+        {currentScreen === 'profile' && (
+          <div>
+            <button onClick={handleProfileClick}>Profile</button>
+            <button onClick={handleEditClick}>Edit</button>
+          </div>
+        )}
+        {currentScreen !== 'profile' && (
           <button onClick={handleProfileClick}>Profile</button>
-          <button onClick={handleEditClick}>Edit</button>
-        </div>
-      )}
-      {currentScreen !== 'profile' && (
-        <button onClick={handleProfileClick}>Profile</button>
-      )}
+        )}
+      </div>
     </header>
   );
 }

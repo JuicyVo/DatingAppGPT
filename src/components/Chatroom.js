@@ -9,7 +9,7 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
   const [sentMessages, setSentMessages] = useState([]);
   const [userMessage, setUserMessage] = useState('');
 
-  const HTTP = "http://localhost:3000/GPT"
+  const HTTP = "http://localhost:3000/GPT";
 
   useEffect(() => {
     // Establish WebSocket connection when the component mounts
@@ -46,20 +46,18 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
     if (socket && newMessage.trim() !== '') {
       const message = { text: newMessage };
       setSentMessages((prevSentMessages) => [...prevSentMessages, message]);
-      socket.send(JSON.stringify(message));
-      setNewMessage('');
 
-      setUserMessage(newMessage); // Set the user's message for ChatGPT
-      await handleSubmit();
+      await handleSubmit(newMessage);
+      setNewMessage('');
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (userMsg) => {
     const openAiApiKey = process.env.REACT_APP_OPEN_AI_API_KEY;
-    // Construct the message to send to ChatGPT, including the prompt and user's message
+
     const messageToChatGpt = [
-      { role: 'user', content: userMessage },
-      { role: 'assistant', content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt which will be this "${userMessage}", and maybe try to respond in a sexy way while trying to flirt with the user. Try to keep it relatively short, to less than 200 tokens` },
+      { role: 'user', content: userMsg },
+      { role: 'assistant', content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt, which will be this "${userMsg}", and maybe try to respond in a sexy way while trying to flirt with the user. Try to keep it relatively short, to less than 200 tokens` },
     ];
 
     const apiRequestBody = {
@@ -81,10 +79,11 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
       if (response.ok) {
         const data = await response.json();
 
-        // Add the ChatGPT response to the messages state
+        // Display messages in the order: user, AI, user
         setMessages((prevMessages) => [
           ...prevMessages,
-          { sender: userId1, text: `${userName}: ${data.choices[0].message.content}`, picture: userProfilePicture },
+          { sender: userId1, text: userMsg, picture: userProfilePicture },
+          { sender: userId1, text: data.choices[0].message.content, picture: userProfilePicture },
         ]);
       } else {
         throw new Error("Failed to fetch data");
@@ -103,7 +102,7 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
 
       <div className="message-container">
         {[...messages, ...sentMessages].map((message, index) => (
-          <div key={index} className={`message ${message.sender === 'chatGPT' ? 'sent' : 'received'}`}>
+          <div key={index} className={`message ${message.sender === userId1 ? 'received' : 'sent'}`}>
             {message.picture && (
               <img src={message.picture} alt="User Profile" className="user-profile-icon" />
             )}

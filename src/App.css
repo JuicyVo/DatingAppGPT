@@ -39,14 +39,14 @@
 }
 
 .img-profile {
-  width: 100px; /* Set your desired width */
-  height: 100px; /* Set your desired height */
+  width: 100px; 
+  height: 100px;
 }
 
 .user-profile-icon {
-  width: 24px; /* Set the desired width */
-  height: 24px; /* Set the desired height */
-  margin-right: 0.5em; /* Optional: Add some spacing between picture and text */
+  width: 24px; 
+  height: 24px; 
+  margin-right: 0.5em; 
 }
 
 .loginlogout{
@@ -58,3 +58,5 @@ margin-bottom: 50px;
 margin-top:20px;
 
 }
+
+

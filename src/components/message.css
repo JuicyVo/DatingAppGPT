@@ -3,16 +3,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F7F7FF; /* Use the same background color as in Chatroom */
+  background-color: #F7F7FF; 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 90%; /* Use the same width as in Chatroom */
+  width: 90%; 
   margin: 0 auto;
   margin-top: 20px;
 }
 
-/* Apply the same styling to images as in Chatroom */
+
 .message-list img.user-profile-icon {
   width: 24px;
   height: 24px;
@@ -37,7 +37,6 @@
 
 
 .message-container .message-list {
-  /* Your desired styles here */
   display: flex;
 ;
   justify-content: center;

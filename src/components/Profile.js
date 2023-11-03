@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
-import './profile-card.css'; // Import the CSS file
+import './profile-card.css'; 
 
 function Profile({ currentScreen, setCurrentScreen }) {
   const { user } = useAuth0();
