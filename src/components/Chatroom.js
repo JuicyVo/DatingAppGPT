@@ -47,18 +47,29 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
       const message = { text: newMessage };
       setSentMessages((prevSentMessages) => [...prevSentMessages, message]);
 
-      await handleSubmit(newMessage);
+      await handleSubmit(newMessage, messages, userName);
       setNewMessage('');
     }
   };
 
-  const handleSubmit = async (userMsg) => {
+  const handleSubmit = async (userMsg, conversationHistory, userName) => {
     const openAiApiKey = process.env.REACT_APP_OPEN_AI_API_KEY;
 
-    const messageToChatGpt = [
-      { role: 'user', content: userMsg },
-      { role: 'assistant', content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt, which will be this "${userMsg}", and maybe try to respond in a sexy way while trying to flirt with the user. Try to keep it relatively short, to less than 200 tokens` },
+    const combinedMessages = [
+      ...conversationHistory,
+      { sender: userId1, text: userMsg, picture: userProfilePicture },
     ];
+
+    const messageToChatGpt = combinedMessages.map((message, index) => ({
+      role: message.sender === userId1 ? 'user' : 'assistant',
+      content: message.text,
+    }));
+
+    // Include userName in the assistant's response prompt
+    messageToChatGpt.push({
+      role: 'assistant',
+      content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt, which will be this "${userMsg}", and maybe try to respond in a sexy way while trying to flirt with ${userName}. Try to keep it relatively short, to less than 200 tokens`,
+    });
 
     const apiRequestBody = {
       messages: messageToChatGpt,
@@ -86,7 +97,7 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
           { sender: userId1, text: data.choices[0].message.content, picture: userProfilePicture },
         ]);
       } else {
-        throw new Error("Failed to fetch data");
+        throw  Error("Failed to fetch data");
       }
     } catch (error) {
       console.error(error);
