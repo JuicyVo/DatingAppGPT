@@ -46,9 +46,9 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
     if (socket && newMessage.trim() !== '') {
       const message = { text: newMessage };
       setSentMessages((prevSentMessages) => [...prevSentMessages, message]);
-
-      await handleSubmit(newMessage, messages, userName);
       setNewMessage('');
+      await handleSubmit(newMessage, messages, userName);
+    
     }
   };
 
