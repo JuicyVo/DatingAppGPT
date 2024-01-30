@@ -68,7 +68,7 @@ function Chatroom({ userName, userProfilePicture, userId1 }) {
     // Include userName in the assistant's response prompt
     messageToChatGpt.push({
       role: 'assistant',
-      content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt, which will be this "${userMsg}", and maybe try to respond in a sexy way while trying to flirt with ${userName}. Try to keep it relatively short, to less than 200 tokens`,
+      content: `Hi, can you respond to the user and pretend that you are the fictional character ${userName} and respond to the user's prompt, which will be this "${userMsg}", and maybe try to respond in a sexy way while trying to flirt with ${userName}. Try to keep it relatively short, to less than 200 tokens. No need to introduce yourse.`,
     });
 
     const apiRequestBody = {
